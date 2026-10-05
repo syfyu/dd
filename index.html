@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f3f7f2" />
+    <title>小跑者 | Dino Runner</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-shell">
+      <header class="page-heading">
+        <p class="eyebrow">ARCADE / 01</p>
+        <h1>小跑者<span>。</span></h1>
+        <p class="subtitle">跳過障礙，看看你能跑多遠。</p>
+      </header>
+
+      <section class="game-panel" aria-label="小跑者遊戲">
+        <div class="game-meta" aria-hidden="true">
+          <span>距離持續累積</span>
+          <span class="key-hint">SPACE / ↑ 跳躍</span>
+        </div>
+        <canvas
+          id="game-canvas"
+          width="800"
+          height="300"
+          aria-label="小跑者遊戲畫面，按空白鍵或上方向鍵跳躍"
+          role="img"
+        >
+          您的瀏覽器不支援 Canvas，無法遊玩此遊戲。
+        </canvas>
+      </section>
+
+      <footer class="page-footer">
+        <span>SPACE / ↑ 跳躍</span>
+        <span>ENTER / SPACE 重新開始</span>
+      </footer>
+    </main>
+  </body>
+</html>
