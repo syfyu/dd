@@ -8,6 +8,9 @@ const GROUND_Y = 244;
 const PLAYER_X = 90;
 const PLAYER_WIDTH = 34;
 const PLAYER_HEIGHT = 42;
+const PLAYER_FRAME_COUNT = 6;
+const PLAYER_FRAME_DURATION = 0.1;
+const PLAYER_DRAW_SIZE = 44;
 const GRAVITY = 1900;
 const JUMP_VELOCITY = -690;
 const INITIAL_SPEED = 330;
@@ -15,6 +18,12 @@ const JETPACK_DURATION = 2.8;
 const JETPACK_FLIGHT_Y = GROUND_Y - PLAYER_HEIGHT - 92;
 const MAX_PETS = 3;
 const HIGH_SCORE_KEY = 'little-runner-high-score';
+
+const playerFrames = Array.from({ length: PLAYER_FRAME_COUNT }, (_, index) => {
+  const frame = new Image();
+  frame.src = `assets/player/frame-${index}.png`;
+  return frame;
+});
 
 const player = {
   x: PLAYER_X,
@@ -296,6 +305,22 @@ function drawGround() {
 
 function drawPlayer() {
   const running = !gameOver && player.y >= GROUND_Y - player.height - 0.5;
+  const frameIndex = running
+    ? Math.floor(elapsedTime / PLAYER_FRAME_DURATION) % PLAYER_FRAME_COUNT
+    : 0;
+  const frame = playerFrames[frameIndex];
+
+  if (frame.complete && frame.naturalWidth > 0) {
+    context.drawImage(
+      frame,
+      player.x - 5,
+      player.y - 2,
+      PLAYER_DRAW_SIZE,
+      PLAYER_DRAW_SIZE,
+    );
+    return;
+  }
+
   const legSwing = running ? Math.sin(elapsedTime * 18) * 3 : 0;
 
   context.fillStyle = '#263b31';
